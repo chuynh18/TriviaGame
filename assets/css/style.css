@@ -1,0 +1,78 @@
+* { padding: 0; margin: 0; }
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background-color: #eee;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#quizHeader {
+    font-size: 36pt;
+    position: fixed;
+    margin: auto;
+    text-align: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: #eee;
+    border-bottom: 3px solid black;
+    text-shadow: 2px 2px lightblue;
+}
+
+#quizBody {
+    width: 40%;
+    margin: auto;
+    text-align: left;
+    font-size: 18pt;
+    padding: 80px 50px 50px;
+    border-left: 1px dashed black;
+    border-right: 1px dashed black;
+    flex: 1 0 auto;
+}
+
+#quizFooter {
+    width: 40%;
+    margin: auto;
+    padding: 80px 50px 50px;
+    border-left: 1px dashed black;
+    border-right: 1px dashed black;
+    border-bottom: 1px dashed black;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+strong {color: red;}
+
+.labelAnswer {
+    max-width: 100%;
+}
+
+#correctQs {
+    color: green;
+}
+
+#u-r-wrong-lol {
+    color: red;
+}
+
+.button {
+    color: white;
+    background-color: red;
+    padding: 15px 20px;
+    font-size: 16pt;
+    border-radius: 25%;
+    border-width: 3px;
+    border-style: solid;
+    border-color: blue;
+}
