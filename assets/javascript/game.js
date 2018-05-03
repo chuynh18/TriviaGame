@@ -75,7 +75,7 @@ var renderWelcome = function () {
     timeLeft = timeAllowed + 1;
     $("#quizHeader").text("Backstroke of the West Quiz");
     $("#quizBody").html("<center><button class='button' type='button' id='nextQuestion'>Click to begin</button></center>");
-    $("#quizFooter").text("The wish power are together with you...");
+    $("#quizFooter").text("Game time started");
     randArrQs = [];
     genRandArr(quizQuestions.length, randArrQs);
 };
@@ -90,16 +90,17 @@ var renderQuestion = function() {
         $("#quizBody").append("<br><button class='button' type='button' id='clickToRestartQuiz'>Click to restart</button>")
     }
     else {
-        startTimer();
-        currentQuestion = [quizQuestions[randArrQs[numCurrentQuestion]].q, quizQuestions[randArrQs[numCurrentQuestion]].a, quizQuestions[randArrQs[numCurrentQuestion]].c, quizQuestions[randArrQs[numCurrentQuestion]].s]
-        genRandArr(currentQuestion[1].length, randArrMC);
-        $("#quizBody").html("<strong>" + currentQuestion[0]) + "</strong><br><br>";
+    startTimer();
+    currentQuestion = [quizQuestions[randArrQs[numCurrentQuestion]].q, quizQuestions[randArrQs[numCurrentQuestion]].a, quizQuestions[randArrQs[numCurrentQuestion]].c, quizQuestions[randArrQs[numCurrentQuestion]].s]
+    genRandArr(currentQuestion[1].length, randArrMC);
+    $("#quizBody").html("<strong>" + currentQuestion[0]) + "</strong><br><br>";
         // warning, warning, disaster zone, warning, disaster zone, evacuate, evacuate
         for (var i = 0; i < currentQuestion[1].length; i++) {
             $("#quizBody").append('<br><input type="radio" name="' + currentQuestion[0] + '" id="' + randArrMC[i] + '" value="' + currentQuestion[1][randArrMC[i]] + '"><label class="labelAnswer" for="' + randArrMC[i] + '">' + currentQuestion[1][randArrMC[i]] + '</label>');
         };
-        $("#quizBody").append("<br><em>Source: <a href='" + currentQuestion[3] + "' target='_blank'>" + currentQuestion[3] + "</a></em><br>");
-        $("#quizBody").append("<br><button class='button' type='button' id='checkAnswer'>Check answer</button>")
+    $("#quizBody").append("<br><em>Source: <a href='" + currentQuestion[3] + "' target='_blank'>" + currentQuestion[3] + "</a></em><br>");
+    $("#quizBody").append("<br><button class='button' type='button' id='checkAnswer'>Check answer</button>")
+    $("#quizFooter").text("Do not say the reason with me, ratio!  I have seen the true facts of pure hero's ground!");
     };
 };
 
@@ -107,6 +108,7 @@ var renderQuestion = function() {
 var checkQuestion = function() {
     stopTimer();
     randArrMC = [];
+    numCurrentQuestion++;
     $("#quizHeader").html("Backstroke of the West Quiz - Time left: <strong><font color='red'>--</font></strong>");
     if (document.getElementById("0").checked === false &&
     document.getElementById("1").checked === false &&
@@ -114,19 +116,33 @@ var checkQuestion = function() {
     document.getElementById("3").checked === false) {
         qUnanswered++;
         $("#quizBody").html("You didn't answer the question!<br><button class='button' type='button' id='nextQuestion'>Next Question</button>");
-        $("#quizBody").append("<br>Questions unanswered: <strong>" + qUnanswered + "</strong><br>Questions correct: <strong id='correctQs'>" + qRight + "</strong><br>Questions incorrect: <strong>" + qWrong + "</strong>");
+        $("#quizBody").append("<br>Questions unanswered: <strong>" + qUnanswered + "</strong><br>Questions correct: <strong id='correctQs'>" + qRight + "</strong><br>Questions incorrect: <strong>" + qWrong + "</strong><br><img src='assets/images/working.gif' alt='It's (not) working!' />");
+        $("#quizFooter").text("R2, let elevator risen, is not a descent");
     }
     else if (document.getElementById(currentQuestion[2]).checked === true) {
         qRight++;
         $("#quizBody").html("Nice job!<br><button class='button' type='button' id='nextQuestion'>Next Question</button>");
-        $("#quizBody").append("<br>Questions unanswered: <strong>" + qUnanswered + "</strong><br>Questions correct: <strong id='correctQs'>" + qRight + "</strong><br>Questions incorrect: <strong>" + qWrong + "</strong>");
+        $("#quizBody").append("<br>Questions unanswered: <strong>" + qUnanswered + "</strong><br>Questions correct: <strong id='correctQs'>" + qRight + "</strong><br>Questions incorrect: <strong>" + qWrong + "</strong><br><img src='assets/images/highground.gif' alt='High ground!' />");
+        $("#quizFooter").text("The wish power are together with you...");
     }
     else {
         qWrong++;
-        $("#quizBody").html("Nope.<br><button class='button' type='button' id='nextQuestion'>Next Question</button>");
-        $("#quizBody").append("<br>Questions unanswered: <strong>" + qUnanswered + "</strong><br>Questions correct: <strong id='correctQs'>" + qRight + "</strong><br>Questions incorrect: <strong>" + qWrong + "</strong>");
+        if (document.getElementById("0").checked === true) {
+            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][0] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong>");
+        }
+        else if (document.getElementById("1").checked === true) {
+            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][1] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong>");
+        }
+        else if (document.getElementById("2").checked === true) {
+            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][2] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong>");
+        }
+        else {
+            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][3] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong>");
+        };
+        $("#quizBody").append("<br><button class='button' type='button' id='nextQuestion'>Next Question</button>");
+        $("#quizBody").append("<br>Questions unanswered: <strong>" + qUnanswered + "</strong><br>Questions correct: <strong id='correctQs'>" + qRight + "</strong><br>Questions incorrect: <strong>" + qWrong + "</strong><br><img src='assets/images/ihateu.gif' alt='I hate you' />");
+        $("#quizFooter").text("Do not want");
     }
-    numCurrentQuestion++;
     timeLeft = timeAllowed + 1;
 };
 
