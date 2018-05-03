@@ -1,5 +1,7 @@
 "use strict";
 
+$(function() {
+
 // for scoring and timing the quiz
 var qRight = 0;
 var qWrong = 0;
@@ -128,16 +130,16 @@ var checkQuestion = function() {
     else {
         qWrong++;
         if (document.getElementById("0").checked === true) {
-            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][0] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong>");
+            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][0] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong><br><em>Source: <a href='" + currentQuestion[3] + "' target='_blank'>" + currentQuestion[3] + "</a></em><br>");
         }
         else if (document.getElementById("1").checked === true) {
-            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][1] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong>");
+            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][1] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong><br><em>Source: <a href='" + currentQuestion[3] + "' target='_blank'>" + currentQuestion[3] + "</a></em><br>");
         }
         else if (document.getElementById("2").checked === true) {
-            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][2] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong>");
+            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][2] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong><br><em>Source: <a href='" + currentQuestion[3] + "' target='_blank'>" + currentQuestion[3] + "</a></em><br>");
         }
         else {
-            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][3] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong>");
+            $("#quizBody").html("Nope.<br><span id='u-r-wrong-lol'>Your answer: " + currentQuestion[1][3] + "</span><br><strong id='correctQs'>Correct answer: " + currentQuestion[1][currentQuestion[2]] + "</strong><br><em>Source: <a href='" + currentQuestion[3] + "' target='_blank'>" + currentQuestion[3] + "</a></em><br>");
         };
         $("#quizBody").append("<br><button class='button' type='button' id='nextQuestion'>Next Question</button>");
         $("#quizBody").append("<br>Questions unanswered: <strong>" + qUnanswered + "</strong><br>Questions correct: <strong id='correctQs'>" + qRight + "</strong><br>Questions incorrect: <strong>" + qWrong + "</strong><br><img src='assets/images/ihateu.gif' alt='I hate you' />");
@@ -161,3 +163,5 @@ $(document).on("click", "#clickToRestartQuiz", function() {
 // ---------------------------------------------------------------------------------
 
 renderWelcome(); // if only this was all the code I had to write to finish the homework
+
+});
