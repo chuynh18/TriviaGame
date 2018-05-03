@@ -59,6 +59,7 @@ var generateRandom = function(howMany) {
 // I want one matching the length of my question bank, and one matching the length of however many multiple choice options I have (so, 4)
 var randArrQs = [];
 var randArrMC = [];
+// is this a horrible way to do things?  yes.
 var genRandArr = function(length, destinationArray) {
     while (destinationArray.length < length) {
         generateRandom(length);
